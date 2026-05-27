@@ -1,2 +1,0 @@
-# gemini-CODE
-gemini-CODE

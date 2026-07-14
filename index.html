@@ -770,6 +770,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
         <span class="engine-label">분석 엔진</span>
         <div class="engine-toggle" id="engineToggle">
           <button class="engine-btn active" id="engineV1" data-v="v1">V1</button>
+          <button class="engine-btn" id="engineV1_1" data-v="v1_1">V1-1</button>
           <button class="engine-btn" id="engineV2" data-v="v2">V2</button>
           <button class="engine-btn" id="engineV3" data-v="v3">V3</button>
           <button class="engine-btn" id="engineV4" data-v="v4">V4</button>
@@ -970,7 +971,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 
 <script>
 'use strict';
-var GAS_URL = "https://script.google.com/macros/s/AKfycbwly-yx1Dct6kzrZTqN_RLCHzTvNbJlvUYXmPPvQ7HrzBk4O7egIU1N2cYwulmiVlQYXQ/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycby96hpaKqB0zXwg91Rnd_31s6PAxAjiVEspdeA4hOmK2oMN-RMcZGUSd_aX5Gx7EYXnzQ/exec";
 
 // ── Google OAuth ──────────────────────────────
 var GOOGLE_CLIENT_ID = '689457851694-13tm2eorntkomivebse89nolr9u7osud.apps.googleusercontent.com';
@@ -1752,20 +1753,23 @@ var S_ENGINE = localStorage.getItem('kevinEngine') || 'v1';
     S_ENGINE = v;
     localStorage.setItem('kevinEngine', v);
     $('engineV1').classList.toggle('active', v==='v1');
+    $('engineV1_1').classList.toggle('active', v==='v1_1');
     $('engineV2').classList.toggle('active', v==='v2');
     $('engineV3').classList.toggle('active', v==='v3');
     $('engineV4').classList.toggle('active', v==='v4');
     $('engineV1').style.color = v==='v1' ? '#0071e3' : '';
+    $('engineV1_1').style.color = v==='v1_1' ? '#0369a1' : '';
     $('engineV2').style.color = v==='v2' ? '#6c3fc5' : '';
     $('engineV3').style.color = v==='v3' ? '#0f9b58' : '';
     $('engineV4').style.color = v==='v4' ? '#d97706' : '';
-    $('engineDesc').textContent = v==='v1' ? '기존 표현기법 엔진' : v==='v2' ? '강화된 Rendering DNA 엔진' : v==='v3' ? 'Style Intelligence Engine' : '표현기법 퀄리티 최우선 엔진 (자체검토·정밀묘사)';
+    $('engineDesc').textContent = v==='v1' ? '기존 표현기법 엔진' : v==='v1_1' ? '자체검토 강화 엔진 (temp 0.25 유지)' : v==='v2' ? '강화된 Rendering DNA 엔진' : v==='v3' ? 'Style Intelligence Engine' : '표현기법 퀄리티 최우선 엔진 (자체검토·정밀묘사)';
     // 버튼 색상도 엔진에 따라 변경
     var sBtn = $('btnS');
-    if(sBtn) sBtn.style.background = v==='v4' ? '#d97706' : v==='v3' ? '#0f9b58' : v==='v2' ? '#6c3fc5' : '#0071e3';
+    if(sBtn) sBtn.style.background = v==='v4' ? '#d97706' : v==='v3' ? '#0f9b58' : v==='v2' ? '#6c3fc5' : v==='v1_1' ? '#0369a1' : '#0071e3';
   }
   setEngine(S_ENGINE);
   $('engineV1').addEventListener('click', function(){ setEngine('v1'); });
+  $('engineV1_1').addEventListener('click', function(){ setEngine('v1_1'); });
   $('engineV2').addEventListener('click', function(){ setEngine('v2'); });
   $('engineV3').addEventListener('click', function(){ setEngine('v3'); });
   $('engineV4').addEventListener('click', function(){ setEngine('v4'); });
@@ -1800,7 +1804,7 @@ function runStyleAnalysis(){
   gT($('ptRef'),REF[S.tool]||REF.gemini);
   setLoad($('ptStyle'),'렌더링 DNA 분석 중…');setLoad($('ptChar'),'분석 중…');setLoad($('ptComp'),'분석 중…');setLoad($('ptNeg'),'분석 중…');
   setProgress(10,'단일 Gemini 호출로 분석 중…','STYLE_DNA + CHARACTER + COMPOSITION + NEGATIVE');
-  var analyzeAction = (S_ENGINE === 'v4') ? 'analyzeAll_v4' : (S_ENGINE === 'v3') ? 'analyzeAll_v3' : (S_ENGINE === 'v2') ? 'analyzeAll_v2' : 'analyzeAll';
+  var analyzeAction = (S_ENGINE === 'v4') ? 'analyzeAll_v4' : (S_ENGINE === 'v3') ? 'analyzeAll_v3' : (S_ENGINE === 'v2') ? 'analyzeAll_v2' : (S_ENGINE === 'v1_1') ? 'analyzeAll_v1_1' : 'analyzeAll';
   prepareImages(S.sImgs).then(function(pl){
   api(analyzeAction,{imageDataArray:pl,toolKey:S.tool})
   .then(function(r){
@@ -3101,9 +3105,9 @@ function getFinalPlain(){
     l.push('=== STYLE LOCKED. CONTENT FOLLOWS. Apply scene details using the style above. ===');
   }
   if(contentLines.length){
-    // ★ Content 섹션 진입 직전 스타일 지시를 한 번 더 짧게 상기시킴
-    //   (긴 Style DNA 이후 'lost in the middle' 현상을 줄이기 위함, V1/V2/V3/V4 전체 엔진에 동일 적용)
-    var reminder = styleLines.length
+    // ★ V1-1 / V4 엔진으로 분석한 경우에만: Content 섹션 진입 직전 스타일 지시를 한 번 더 짧게 상기시킴
+    //   (긴 Style DNA 이후 'lost in the middle' 현상을 줄이기 위함, V1/V2/V3는 기존 방식 그대로 유지)
+    var reminder = ((S.styleEngineUsed === 'v4' || S.styleEngineUsed === 'v1_1') && styleLines.length)
       ? 'Reminder: match the exact rendering style from the reference image above — same line weight, shading, texture, and color method. Now apply these scene details:\n\n'
       : '';
     l.push('=== CONTENT: POSITION / FORM / CHARACTERS / BACKGROUND ===\nApply content details only. Style remains locked above.\n\n'+reminder+contentLines.join('\n\n'));

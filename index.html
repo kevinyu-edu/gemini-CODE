@@ -970,7 +970,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 
 <script>
 'use strict';
-var GAS_URL = "https://script.google.com/macros/s/AKfycby0_7sHxdj2tgcZxoPdTTvX8Xot58emGPqm3XdwBKQG6Nem5P33kfO7pB9ZXJpsl1leHQ/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycbyOsKXhsjuTLRD5XuhpZTFI07swsuGuiHGwmwvV2C4GYFK4Cg5r9QSArFL67m96im210g/exec";
 
 // ── Google OAuth ──────────────────────────────
 var GOOGLE_CLIENT_ID = '689457851694-13tm2eorntkomivebse89nolr9u7osud.apps.googleusercontent.com';
@@ -1805,6 +1805,7 @@ function runStyleAnalysis(){
   api(analyzeAction,{imageDataArray:pl,toolKey:S.tool})
   .then(function(r){
     if(r.success){
+      S.styleEngineUsed = S_ENGINE; // ★ 이번 분석에 쓰인 엔진 기록 (Final Prompt 조립시 참조)
       applyPT($('ptStyle'),{success:true,prompt:r.style},'style');
       applyPT($('ptChar'), {success:true,prompt:r.character},'char');
       applyPT($('ptComp'), {success:true,prompt:r.composition},'comp');
@@ -3100,7 +3101,12 @@ function getFinalPlain(){
     l.push('=== STYLE LOCKED. CONTENT FOLLOWS. Apply scene details using the style above. ===');
   }
   if(contentLines.length){
-    l.push('=== CONTENT: POSITION / FORM / CHARACTERS / BACKGROUND ===\nApply content details only. Style remains locked above.\n\n'+contentLines.join('\n\n'));
+    // ★ V4 엔진으로 분석한 경우에만: Content 섹션 진입 직전 스타일 지시를 한 번 더 짧게 상기시킴
+    //   (긴 Style DNA 이후 'lost in the middle' 현상을 줄이기 위함, V1/V2/V3는 기존 방식 그대로 유지)
+    var reminder = (S.styleEngineUsed === 'v4' && styleLines.length)
+      ? 'Reminder: match the exact rendering style from the reference image above — same line weight, shading, texture, and color method. Now apply these scene details:\n\n'
+      : '';
+    l.push('=== CONTENT: POSITION / FORM / CHARACTERS / BACKGROUND ===\nApply content details only. Style remains locked above.\n\n'+reminder+contentLines.join('\n\n'));
   }
   endLines.forEach(function(t){l.push(t);});
   l.push('GLOBAL RULE: Do NOT include any Korean (Hangul) text, characters, or signage anywhere in the generated image. All visible text in the image must be in English or left blank.');

@@ -100,39 +100,6 @@ button,input,textarea,select{font-family:inherit}button{cursor:pointer}
 /* 왼쪽: 프롬프트 스크롤 영역 */
 .main-col{flex:1;min-width:0;overflow-y:auto;padding:28px 22px 100px}
 
-/* ══════════ 데스크탑 3단 레이아웃 (설정에서 켜는 옵션) ══════════ */
-.desktop-left-col,.desktop-center-col{display:contents}
-
-body.desktop3col{--side:260px}
-body.desktop3col .layout{display:grid;grid-template-columns:290px 1fr var(--side)}
-body.desktop3col .main-col{display:contents;padding:0}
-body.desktop3col .desktop-left-col{
-  display:block;grid-column:1;overflow-y:auto;height:calc(100vh - 52px);
-  position:sticky;top:0;padding:20px 16px 60px;
-  border-right:1px solid var(--sep);background:var(--bg2);
-}
-body.desktop3col .desktop-center-col{
-  display:block;grid-column:2;overflow-y:auto;height:calc(100vh - 52px);
-  padding:28px 24px 100px;
-}
-body.desktop3col .side-panel{grid-column:3}
-
-/* 왼쪽 컬럼: 스타일 레퍼런스 / 스토리 레퍼런스를 세로로 순서대로 재배열 */
-body.desktop3col .desktop-left-col{display:flex;flex-direction:column}
-body.desktop3col .dual-upload,
-body.desktop3col .analyze-row,
-body.desktop3col .analyze-btns-row{display:contents}
-body.desktop3col .card{order:1}
-body.desktop3col .tool-wrap{order:2}
-body.desktop3col .upload-zone.uz-style{order:3;margin-bottom:10px}
-body.desktop3col .engine-toggle-wrap{order:4;margin-bottom:9px}
-body.desktop3col #btnS{order:5;margin-bottom:18px}
-body.desktop3col .upload-zone.uz-story{order:6;margin-bottom:10px}
-body.desktop3col #btnT{order:7}
-body.desktop3col .prog-wrap{order:8}
-body.desktop3col .tool-top{flex-direction:column;align-items:stretch}
-body.desktop3col .vsel{width:100%}
-
 /* 오른쪽: 고정 사이드 패널 */
 .side-panel{width:var(--side);flex-shrink:0;border-left:1px solid var(--sep);background:var(--bg2);display:flex;flex-direction:column;overflow-y:auto;position:sticky;top:0;height:calc(100vh - 52px)}
 .side-inner{padding:18px 16px;display:flex;flex-direction:column;gap:14px}
@@ -161,7 +128,8 @@ body.desktop3col .vsel{width:100%}
 /* 새로시작 버튼 */
 .btn-reset-ai{width:100%;height:34px;margin-top:6px;border:1.5px dashed rgba(52,199,89,.5);border-radius:var(--rmd);background:transparent;color:#34c759;font-family:var(--fd);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s var(--ea);}
 .btn-reset-ai:hover{background:rgba(52,199,89,.08);border-color:#34c759;}
-
+.btn-full-reset{width:100%;height:34px;margin-top:4px;border:1.5px dashed rgba(255,59,48,.4);border-radius:var(--rmd);background:transparent;color:#ff3b30;font-family:var(--fd);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s var(--ea);}
+.btn-full-reset:hover{background:rgba(255,59,48,.08);border-color:#ff3b30;}
 
 /* AI 생성 버튼 (사이드) */
 .cp-btn.gen-btn{background:linear-gradient(135deg,#6366f1,#0071e3);color:#fff}
@@ -242,10 +210,10 @@ body.desktop3col .vsel{width:100%}
 
 /* ANALYZE */
 .analyze-row{display:flex;flex-direction:column;gap:9px;margin-bottom:0}
-.engine-toggle-wrap{display:flex;align-items:center;gap:8px;padding:6px 0;flex-wrap:wrap;}
+.engine-toggle-wrap{display:flex;align-items:center;gap:8px;padding:6px 0;}
 .engine-label{font-family:var(--fd);font-size:11px;font-weight:600;color:var(--t3);white-space:nowrap;}
-.engine-toggle{display:flex;background:var(--f3);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap;}
-.engine-btn{height:26px;padding:0 9px;border:none;border-radius:8px;font-family:var(--fd);font-size:10.5px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);transition:all .15s;white-space:nowrap;}
+.engine-toggle{display:flex;background:var(--f3);border-radius:10px;padding:3px;gap:2px;}
+.engine-btn{height:26px;padding:0 12px;border:none;border-radius:8px;font-family:var(--fd);font-size:11px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);transition:all .15s;white-space:nowrap;}
 .engine-btn.active{background:#fff;color:var(--t1);box-shadow:0 1px 4px rgba(0,0,0,.12);}
 .engine-desc{font-family:var(--fd);font-size:10px;color:var(--t3);flex:1;}
 .analyze-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
@@ -374,15 +342,15 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 @keyframes sh{0%{background-position:-200% 0}100%{background-position:200% 0}}
 .ll{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;font-family:var(--ft);color:var(--t3);display:flex;align-items:center;gap:6px;z-index:1;white-space:nowrap}
 .ht-row{display:flex;gap:3px;margin-top:6px;flex-wrap:wrap}
-.htab{height:21px;padding:0 7px;background:var(--f3);border:1px solid var(--sep);border-radius:20px;font-size:10px;font-weight:700;color:var(--t2);cursor:pointer;transition:all var(--tf);display:flex;align-items:center;gap:3px;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.htab{height:21px;padding:0 7px;background:var(--f3);border:1px solid var(--sep);border-radius:20px;font-size:10px;font-weight:700;color:var(--t2);cursor:pointer;transition:all var(--tf);display:flex;align-items:center;gap:3px}
 .htab:hover{background:var(--f1);color:var(--t1)}
 .htab.on{background:var(--acl);border-color:var(--ac);color:var(--ac)}
 .hn{width:13px;height:13px;border-radius:50%;background:var(--f1);display:flex;align-items:center;justify-content:center;font-size:9px}
 .htab.on .hn{background:var(--ac);color:#fff}
-.htab .hx{display:none;width:13px;height:13px;font-size:9px;line-height:1;opacity:0.9;font-weight:900}
-.htab.del-mode .hn{display:none}
-.htab.del-mode .hx{display:flex;align-items:center;justify-content:center}
-.htab.del-mode{background:rgba(255,80,80,0.15);border-color:rgba(255,80,80,0.4)}
+.htab .hx{display:none;font-size:9px;line-height:1;opacity:0.9;font-weight:900}
+.htab.jiggle-mode .hn{display:none}
+.htab.jiggle-mode .hx{display:flex;align-items:center;justify-content:center}
+.htab.jiggle-mode{animation:jiggle 0.3s infinite alternate;transform-origin:center}
 @keyframes jiggle{
   0%{transform:rotate(-6deg) scale(1.05)}
   100%{transform:rotate(6deg) scale(1.05)}
@@ -423,6 +391,8 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 .size-row-e{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1}
 .sz-in{width:68px;height:28px;padding:0 7px;background:var(--bg2);border:1.5px solid var(--sep2);border-radius:var(--rsm);font-size:12px;font-weight:500;color:var(--t1);outline:none;text-align:center;transition:border-color var(--tf)}
 .sz-in:focus{border-color:var(--ac)}
+.sz-in::-webkit-outer-spin-button,.sz-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.sz-in[type=number]{-moz-appearance:textfield}
 .sz-x{font-size:12px;font-weight:600;color:var(--t2)}
 .sz-usel{height:28px;padding:0 6px;background:var(--bg2);border:1.5px solid var(--sep2);border-radius:var(--rsm);font-size:11px;color:var(--t1);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none}
 .btn-cvt{height:28px;padding:0 11px;background:var(--ac);color:#fff;border:none;border-radius:var(--rsm);font-size:11px;font-weight:600;cursor:pointer;transition:all var(--tf)}
@@ -430,6 +400,117 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 .sz-result-box{margin-top:8px;padding:9px 11px;background:var(--bg2);border:1px solid var(--sep);border-radius:var(--rsm);font-size:11.5px;font-family:var(--fm);color:var(--t2);line-height:1.8;display:none}
 .sz-result-box.show{display:block}
 .sz-hl{font-weight:700;color:var(--t1)}
+
+/* ── 내 장면 설정 영역 ── */
+.scene-section{
+  margin:0;
+  border-top:2px solid transparent;
+  border-image:linear-gradient(90deg,var(--ac),var(--gn)) 1;
+  padding-top:0;
+}
+.scene-section-header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 20px 10px;
+  background:linear-gradient(135deg,rgba(0,113,227,.08),rgba(0,200,150,.05));
+  border-bottom:1px solid rgba(0,113,227,.15);
+}
+.scene-section-icon{font-size:20px;flex-shrink:0}
+.scene-section-title{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.scene-section-sub{font-size:11px;color:var(--t3);margin-top:2px}
+.scene-card{border-radius:0;border-left:3px solid var(--ac)!important;margin:0}
+.scene-card:first-of-type{border-top:none}
+
+/* Story 통합 박스 */
+.scene-story-box{
+  background:var(--bg2);
+  border:1.5px solid var(--ac);
+  border-radius:var(--rmd);
+  overflow:hidden;
+  margin:0 0 2px 0;
+}
+.scene-story-box .scene-apply-wrap{
+  border-top:1px solid var(--sep);
+  background:rgba(0,113,227,.04);
+}
+.scene-story-box .char-slots-wrap{
+  border-top:1px solid var(--sep);
+  background:rgba(0,113,227,.03);
+}
+
+/* 장면 반영 버튼 */
+.scene-apply-wrap{padding:12px 16px;background:rgba(0,113,227,.04)}
+.scene-apply-btn{
+  width:100%;height:42px;
+  background:linear-gradient(135deg,var(--ac),#0090e0);
+  color:#fff;border:none;border-radius:12px;
+  font-family:var(--fd);font-size:13px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .18s;box-shadow:0 3px 12px rgba(0,113,227,.3);
+}
+.scene-apply-btn:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,113,227,.4)}
+.scene-apply-btn:active{transform:translateY(0)}
+.scene-apply-btn.loading{opacity:.7;pointer-events:none}
+.scene-apply-sub{font-size:10px;font-weight:400;opacity:.75}
+
+/* 캐릭터 슬롯 */
+.char-slots-wrap{padding:0 16px 12px;background:rgba(0,113,227,.04)}
+.char-slots-header{display:flex;align-items:center;gap:8px;padding:8px 0 10px}
+.char-slots-title{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--t1)}
+.char-slots-sub{font-size:10px;color:var(--t3)}
+.char-slots-list{display:flex;flex-direction:column;gap:8px}
+
+/* 캐릭터 슬롯 카드 */
+.char-slot{
+  background:var(--bg2);
+  border:1.5px solid var(--sep);
+  border-radius:12px;
+  overflow:hidden;
+  transition:border-color .16s;
+}
+.char-slot.locked{border-color:var(--rd)!important}
+.char-slot-header{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;
+  background:var(--f3);
+  border-bottom:1px solid var(--sep);
+}
+.char-slot-label{
+  font-family:var(--fd);font-size:11px;font-weight:700;
+  color:var(--ac);flex:1;
+}
+.char-slot-acts{display:flex;align-items:center;gap:4px}
+.char-slot-lock{
+  width:26px;height:26px;border-radius:6px;border:none;
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:all .14s;color:var(--t3);
+}
+.char-slot-lock:hover{background:var(--f1)}
+.char-slot-lock.locked{color:var(--rd)}
+.char-slot-del{
+  width:26px;height:26px;border-radius:6px;border:none;
+  background:transparent;cursor:pointer;color:var(--t3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:all .14s;
+}
+.char-slot-del:hover{background:rgba(255,59,48,.12);color:var(--rd)}
+.char-slot-body{
+  padding:10px 12px;
+  font-size:11.5px;color:var(--t2);line-height:1.6;
+  min-height:44px;outline:none;cursor:text;
+}
+.char-slot-body:focus{background:rgba(0,113,227,.04)}
+.char-slot-footer{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 12px;border-top:1px solid var(--sep);
+}
+.char-slot-ai-btn{
+  height:24px;padding:0 10px;
+  background:rgba(109,77,255,.12);color:var(--ac2);
+  border:none;border-radius:6px;font-size:10px;font-weight:600;
+  cursor:pointer;transition:all .14s;display:flex;align-items:center;gap:4px;
+}
+.char-slot-ai-btn:hover{background:rgba(109,77,255,.22)}
 
 /* FINAL */
 .final-card{background:var(--t1);border-radius:var(--rxl);padding:18px 20px;margin-bottom:10px;display:none;opacity:0;transform:translateY(8px);transition:opacity var(--ts),transform var(--ts)}
@@ -482,8 +563,6 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 
 /* TOAST */
 .toast-wrap{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:9999;pointer-events:none}
-.sz-in::-webkit-outer-spin-button,.sz-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.sz-in[type=number]{-moz-appearance:textfield}
 .toast{display:flex;align-items:center;gap:7px;background:rgba(29,29,31,.96);backdrop-filter:blur(20px);color:#fff;font-size:13px;font-weight:500;padding:9px 16px;border-radius:28px;box-shadow:var(--sxl);white-space:nowrap;border:1px solid rgba(255,255,255,.1);transform:translateY(10px) scale(.95);opacity:0;transition:all var(--tm) var(--es)}
 .toast.show{transform:translateY(0) scale(1);opacity:1}
 .toast.success .tdot{background:var(--gn)}.toast.error .tdot{background:var(--rd)}
@@ -495,12 +574,6 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
   .side-panel{display:none}
   .layout{display:block;height:auto;overflow:visible}
   .main-col{overflow:visible;padding:20px 16px 80px}
-
-  /* 데스크탑 3단 옵션이 켜져 있어도 좁은 화면에서는 항상 기존 모바일 레이아웃 유지 */
-  body.desktop3col .layout{display:block;height:auto}
-  body.desktop3col .main-col{display:block;overflow:visible;padding:20px 16px 80px}
-  body.desktop3col .desktop-left-col,
-  body.desktop3col .desktop-center-col{display:contents}
 }
 
 
@@ -645,21 +718,6 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       </label>
     </div>
 
-    <!-- 화면 레이아웃 -->
-    <div class="modal-section" style="margin-top:16px">
-      <div class="modal-sec-title">🖥 화면 레이아웃</div>
-      <label class="modal-toggle-row">
-        <div class="modal-toggle-info">
-          <div class="modal-toggle-label">데스크탑 3단 레이아웃</div>
-          <div class="modal-toggle-desc">왼쪽 분석엔진 · 가운데 프롬프트 · 오른쪽 복사버튼으로 화면을 나눠서 표시 (좁은 화면에서는 자동으로 기존 레이아웃 유지)</div>
-        </div>
-        <div class="toggle-wrap">
-          <input type="checkbox" id="chkDesktop3Col" class="toggle-input">
-          <span class="toggle-track"></span>
-        </div>
-      </label>
-    </div>
-
 
 
     <!-- API Key 설정 -->
@@ -704,14 +762,10 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
   <!-- ── 왼쪽: 프롬프트 영역 ── -->
   <div class="main-col">
 
-    <div class="desktop-left-col">
     <div class="card">
       <div class="proj-f">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
-          <label for="projIn" style="margin:0;">프로젝트명</label>
-          <button id="btnFullReset" title="전체 초기화 (이미지+텍스트 전부 삭제)" style="height:22px;padding:0 8px;border:none;border-radius:8px;background:var(--f3);color:#ff3b30;font-family:var(--fd);font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;" onmouseover="this.style.background='#ff3b30';this.style.color='#fff'" onmouseout="this.style.background='var(--f3)';this.style.color='#ff3b30'">🗑 전체 초기화</button>
-        </div>
-        <input type="text" id="projIn" class="proj-in" placeholder="프로젝트명을 입력하세요" autocomplete="off" spellcheck="false" style="width:100%;">
+        <label for="projIn">프로젝트명</label>
+        <input type="text" id="projIn" class="proj-in" placeholder="프로젝트명을 입력하세요" autocomplete="off" spellcheck="false">
         <div class="proj-dv"></div>
       </div>
     </div>
@@ -753,14 +807,6 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
           <div class="pv-bar"><span class="pv-cnt" id="pvTC"></span><button class="btn-clr" id="clrT">삭제</button></div>
           <div class="pv-grid" id="gridT"></div>
         </div>
-        <div class="engine-toggle-wrap" style="margin-top:8px">
-          <span class="engine-label">스토리 엔진</span>
-          <div class="engine-toggle" id="storyEngineToggle">
-            <button class="engine-btn active" id="storyEngineV1" data-v="v1">V1</button>
-            <button class="engine-btn" id="storyEngineV2" data-v="v2">V2</button>
-          </div>
-          <span class="engine-desc" id="storyEngineDesc">정제 프롬프트 엔진</span>
-        </div>
       </div>
     </div>
 
@@ -769,11 +815,9 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       <div class="engine-toggle-wrap">
         <span class="engine-label">분석 엔진</span>
         <div class="engine-toggle" id="engineToggle">
-          <button class="engine-btn active" id="engineV1" data-v="v1">V1</button>
-          <button class="engine-btn" id="engineV1_1" data-v="v1_1">V1-1</button>
-          <button class="engine-btn" id="engineV2" data-v="v2">V2</button>
-          <button class="engine-btn" id="engineV3" data-v="v3">V3</button>
-          <button class="engine-btn" id="engineV4" data-v="v4">V4</button>
+          <button class="engine-btn active" id="engineV1" data-v="v1">Kevin Prompt V1</button>
+          <button class="engine-btn" id="engineV2" data-v="v2">Kevin Prompt V2</button>
+          <button class="engine-btn" id="engineV3" data-v="v3">Kevin Prompt V3</button>
         </div>
         <span class="engine-desc" id="engineDesc">기존 표현기법 엔진</span>
       </div>
@@ -791,9 +835,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       <div class="prog-bg"><div class="prog-fill" id="progFill"></div></div>
       <div class="prog-sub" id="progSub"></div>
     </div>
-    </div><!-- /desktop-left-col -->
 
-    <div class="desktop-center-col">
     <div class="res-hdr" id="resHdr">
       <span class="res-title">생성된 프롬프트</span>
       <span class="res-pill" id="resPill">분석 중…</span>
@@ -839,17 +881,26 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       </div>
       <div class="ai-chat-panel" id="chatPanel-snegIn"></div>
     </div>
-    <!-- STORY -->
-    <div class="pc always" id="pcStory" data-t="story">
-      <div class="pc-hdr"><input type="checkbox" class="pchk" id="chkStory"><div class="pc-hdr-left"><span class="pc-title">Story Structure</span><span class="pc-tag">장면 구조</span></div><div class="pc-acts"><button class="bic" id="btnTrStory"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4M12 20l4-9 4 9M19.1 18h-6.2"/></svg> 번역<span class="bic-tip">한↔영 번역</span></button><button class="bic" id="btnCpStory"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="12" height="14" rx="2"/><rect x="4" y="8" width="12" height="14" rx="2"/></svg> 복사<span class="bic-tip">클립보드에 복사</span></button><button class="bic bic-chat" data-target="storyIn" data-label="Story Structure"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13l.75 2.25L22 16l-2.25.75L19 19l-.75-2.25L16 16l2.25-.75z"/><path d="M5 19l.5 1.5L7 21l-1.5.5L5 23l-.5-1.5L3 21l1.5-.5z"/></svg> AI 수정<span class="bic-tip">AI로 수정하기</span></button></div></div>
-      <div class="pc-body" style="padding:11px 14px;display:flex;flex-direction:column;gap:8px">
-        <div class="ai-enh-row"><div class="ta-hl-wrap" id="hlWrap-storyIn"><div class="ta-hl-back" id="hlBack-storyIn"></div><textarea class="enh-ta" id="storyIn" style="min-height:120px;max-height:260px;overflow-y:auto;resize:vertical" placeholder="스토리 이미지로 분석하거나, 직접 장면을 입력하세요." rows="6" spellcheck="false"></textarea></div><button class="enh-btn gn" id="btnAIStory"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>AI강화</button><button class="enh-btn" id="btnCheckContam" style="background:#0891b2"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>오염검사</button></div>
-        <div class="enh-res gn-c" id="storyAIRes" style="display:none"></div>
-        <div id="contamPanel" style="display:none;margin-top:8px;padding:10px;border:1px solid #0891b2;border-radius:8px;background:rgba(8,145,178,.06)"></div>
-        <div class="ht-row" id="htStory"></div>
+    <!-- EXTRAS -->
+    <div class="pc always" id="pcExtras" data-t="extras">
+      <div class="pc-hdr"><div class="pc-hdr-left"><span class="pc-title">Extras</span><span class="pc-tag">기타</span></div></div>
+      <div class="ext-body">
+        <div class="ext-row"><div class="ext-lw"><input type="checkbox" class="pchk" id="chkWhite"><label for="chkWhite">배경 흰색</label></div><div class="epill ep-wh">white background, clean white backdrop</div></div>
+        <div class="ext-row" style="flex-direction:column;align-items:flex-start;gap:7px">
+          <div style="display:flex;align-items:center;gap:7px"><input type="checkbox" class="pchk" id="chkSize"><label for="chkSize" style="font-size:12px;font-weight:500;cursor:pointer;user-select:none">사이즈 변환</label><span class="dz-meta" style="margin-top:0">미입력 시 기본값 1280×720px 적용</span></div>
+          <div class="size-row-e">
+            <input type="number" id="szW" class="sz-in" value="0" min="0" onfocus="if(this.value==='0')this.value=''" onblur="if(!this.value||this.value==='')this.value='0';autoCheckSize()">
+            <span class="sz-x">×</span>
+            <input type="number" id="szH" class="sz-in" value="0" min="0" onfocus="if(this.value==='0')this.value=''" onblur="if(!this.value||this.value==='')this.value='0';autoCheckSize()">
+            <select id="szUnit" class="sz-usel"><option value="px">px</option><option value="mm">mm</option><option value="cm">cm</option><option value="inch">inch</option></select>
+            <button class="btn-cvt" id="btnCvt">변환</button>
+          </div>
+          <div class="sz-result-box" id="szResultBox"></div>
+        </div>
       </div>
-      <div class="ai-chat-panel" id="chatPanel-storyIn"></div>
     </div>
+
+    <!-- ══════════════════════════════════════ -->
     <!-- MANUAL -->
     <div class="pc always" id="pcManual" data-t="manual">
       <div class="pc-hdr"><input type="checkbox" class="pchk" id="chkManual"><div class="pc-hdr-left"><span class="pc-title">Manual Note</span><span class="pc-tag">수기 작성</span></div><div class="pc-acts"><button class="bic" id="btnTrManual"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4M12 20l4-9 4 9M19.1 18h-6.2"/></svg> 번역<span class="bic-tip">한↔영 번역</span></button><button class="bic" id="btnCpManual"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="12" height="14" rx="2"/><rect x="4" y="8" width="12" height="14" rx="2"/></svg> 복사<span class="bic-tip">클립보드에 복사</span></button><button class="bic bic-chat" data-target="manualIn" data-label="Manual Note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13l.75 2.25L22 16l-2.25.75L19 19l-.75-2.25L16 16l2.25-.75z"/><path d="M5 19l.5 1.5L7 21l-1.5.5L5 23l-.5-1.5L3 21l1.5-.5z"/></svg> AI 수정<span class="bic-tip">AI로 수정하기</span></button></div></div>
@@ -860,23 +911,54 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       </div>
       <div class="ai-chat-panel" id="chatPanel-manualIn"></div>
     </div>
-    <!-- EXTRAS -->
-    <div class="pc always" id="pcExtras" data-t="extras">
-      <div class="pc-hdr"><div class="pc-hdr-left"><span class="pc-title">Extras</span><span class="pc-tag">기타</span></div></div>
-      <div class="ext-body">
-        <div class="ext-row"><div class="ext-lw"><input type="checkbox" class="pchk" id="chkWhite"><label for="chkWhite">배경 흰색</label></div><div class="epill ep-wh">white background, clean white backdrop</div></div>
-        <div class="ext-row" style="flex-direction:column;align-items:flex-start;gap:7px">
-          <div style="display:flex;align-items:center;gap:7px"><input type="checkbox" class="pchk" id="chkSize"><label for="chkSize" style="font-size:12px;font-weight:500;cursor:pointer;user-select:none">사이즈 변환</label></div>
-          <div class="size-row-e">
-            <input type="number" id="szW" class="sz-in" value="0" min="0" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'">
-            <span class="sz-x">×</span>
-            <input type="number" id="szH" class="sz-in" value="0" min="0" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'">
-            <select id="szUnit" class="sz-usel"><option value="mm">mm</option><option value="cm">cm</option><option value="inch">inch</option><option value="px">px</option></select>
-            <button class="btn-cvt" id="btnCvt">변환</button>
-          </div>
-          <div class="sz-result-box" id="szResultBox"></div>
+
+    <!-- 내 장면 설정 영역 -->
+    <div class="scene-section">
+      <div class="scene-section-header">
+        <div class="scene-section-icon">✏️</div>
+        <div>
+          <div class="scene-section-title">내 장면 설정</div>
+          <div class="scene-section-sub">AI 분석 결과를 바탕으로 장면을 직접 정의하세요</div>
         </div>
       </div>
+
+      <!-- STORY + 장면반영 + 캐릭터슬롯 — 하나의 박스 -->
+      <div class="scene-story-box">
+        <!-- Story 헤더 -->
+        <div class="pc-hdr" style="border-bottom:1px solid var(--sep)">
+          <input type="checkbox" class="pchk" id="chkStory">
+          <div class="pc-hdr-left"><span class="pc-title">Story Structure</span><span class="pc-tag">장면 구조</span></div>
+          <div class="pc-acts">
+            <button class="bic" id="btnTrStory"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4M12 20l4-9 4 9M19.1 18h-6.2"/></svg> 번역<span class="bic-tip">한↔영 번역</span></button>
+            <button class="bic" id="btnCpStory"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="12" height="14" rx="2"/><rect x="4" y="8" width="12" height="14" rx="2"/></svg> 복사<span class="bic-tip">클립보드에 복사</span></button>
+            <button class="bic bic-chat" data-target="storyIn" data-label="Story Structure"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13l.75 2.25L22 16l-2.25.75L19 19l-.75-2.25L16 16l2.25-.75z"/><path d="M5 19l.5 1.5L7 21l-1.5.5L5 23l-.5-1.5L3 21l1.5-.5z"/></svg> AI 수정<span class="bic-tip">AI로 수정하기</span></button>
+          </div>
+        </div>
+        <!-- Story 바디 -->
+        <div style="padding:11px 14px;display:flex;flex-direction:column;gap:8px">
+          <div class="ai-enh-row"><div class="ta-hl-wrap" id="hlWrap-storyIn"><div class="ta-hl-back" id="hlBack-storyIn"></div><textarea class="enh-ta" id="storyIn" style="min-height:120px;max-height:260px;overflow-y:auto;resize:vertical" placeholder="장면을 자유롭게 입력하세요. (예: 4명의 아이들이 겨울 눈밭에서 놀고 있다)" rows="6" spellcheck="false"></textarea></div><button class="enh-btn gn" id="btnAIStory"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>AI강화</button></div>
+          <div class="enh-res gn-c" id="storyAIRes" style="display:none"></div>
+          <div class="ht-row" id="htStory"></div>
+        </div>
+        <div class="ai-chat-panel" id="chatPanel-storyIn"></div>
+        <!-- 장면 반영 버튼 -->
+        <div class="scene-apply-wrap">
+          <button class="scene-apply-btn" id="btnSceneApply">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            장면 반영
+            <span class="scene-apply-sub">Story → 캐릭터 슬롯 자동 생성</span>
+          </button>
+        </div>
+        <!-- 캐릭터 슬롯 -->
+        <div class="char-slots-wrap" id="charSlotsWrap" style="display:none">
+          <div class="char-slots-header">
+            <span class="char-slots-title">👤 캐릭터 설정</span>
+            <span class="char-slots-sub" id="charSlotsCount"></span>
+          </div>
+          <div class="char-slots-list" id="charSlotsList"></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- FINAL -->
@@ -889,10 +971,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
       <div id="finalLockBar" style="display:flex;padding:8px 13px;border-top:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:6px;align-items:center;"></div>
       <!-- Final AI 채팅 패널 -->
       <div class="ai-chat-panel" id="finalChatPanel" style="border-top:1px solid rgba(255,255,255,.1);margin-top:10px;border-radius:var(--rmd);overflow:hidden;"></div>
-      <!-- ★ 일관성 검사 결과 패널 (AI 수정 적용 직후 자동 표시) -->
-      <div id="consistencyPanel" style="display:none;margin:10px 13px 13px;padding:12px;background:#fff;border-radius:var(--rmd);border:1px solid #e2e8f0;color:var(--t1)"></div>
     </div>
-    </div><!-- /desktop-center-col -->
 
 
   </div><!-- /main-col -->
@@ -918,6 +997,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
           <div class="cp-check" id="txtCpCheck">✓</div>
         </button>
         <button class="btn-reset-ai" id="btnResetAI" style="display:none">↩ 새로시작</button>
+        <button class="btn-full-reset" id="btnFullReset" style="display:none">🗑 전체 초기화</button>
       </div>
 
       <div class="sp-divider"></div>
@@ -971,7 +1051,7 @@ mark,.hl-yellow{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 2px
 
 <script>
 'use strict';
-var GAS_URL = "https://script.google.com/macros/s/AKfycby96hpaKqB0zXwg91Rnd_31s6PAxAjiVEspdeA4hOmK2oMN-RMcZGUSd_aX5Gx7EYXnzQ/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycbxT7bk2OgFqrg9HLnVbbSsrLvO4QGRRByhhTMMrRnuutQNKy66SB-2lbwzMDTn-TBdm8w/exec";
 
 // ── Google OAuth ──────────────────────────────
 var GOOGLE_CLIENT_ID = '689457851694-13tm2eorntkomivebse89nolr9u7osud.apps.googleusercontent.com';
@@ -1082,7 +1162,7 @@ function getOrCreateSheet() {
         body: JSON.stringify({ values: headers })
       }).then(function() {
         // 시트 서식 적용 (검은 헤더, 열너비, 텍스트 랩)
-        var colWidths = [130, 110, 130, 160, 260, 220, 220, 220, 200, 220, 220, 100, 220, 150, 50, 150, 50, 400];
+        var colWidths = [130, 110, 130, 160, 260, 220, 220, 220, 200, 220, 180, 80, 100, 220, 50, 220, 50, 400];
         var colRequests = colWidths.map(function(w, i) {
           return { updateDimensionProperties: {
             range: { sheetId: 0, dimension: 'COLUMNS', startIndex: i, endIndex: i+1 },
@@ -1101,7 +1181,7 @@ function getOrCreateSheet() {
             }},
             fields: 'userEnteredFormat'
           }},
-          // 데이터 행 서식 (상단정렬, WRAP - 200px 행높이 안에서 줄바꿈되어 보임, 넘치는 부분은 셀에 붙은 Note로 hover 시 확인)
+          // 데이터 행 서식 (상단정렬, CLIP - 행높이만큼만 보임)
           { repeatCell: {
             range: { sheetId: 0, startRowIndex: 1, endRowIndex: 1000, startColumnIndex: 0, endColumnIndex: 18 },
             cell: { userEnteredFormat: {
@@ -1127,12 +1207,11 @@ function getOrCreateSheet() {
             properties: { sheetId: 0, gridProperties: { frozenRowCount: 1 } },
             fields: 'gridProperties.frozenRowCount'
           }},
-          // 스타일이미지 O+P 병합
+          // ★ 헤더 병합 — 스타일 이미지(col13+14), 스토리 이미지(col15+16)
           { mergeCells: {
             range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 13, endColumnIndex: 15 },
             mergeType: 'MERGE_ALL'
           }},
-          // 스토리이미지 Q+R 병합
           { mergeCells: {
             range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 15, endColumnIndex: 17 },
             mergeType: 'MERGE_ALL'
@@ -1170,12 +1249,12 @@ function uploadImageToDrive(base64, mimeType, folderId, fileName) {
   }).then(function(r){ return r.json(); })
     .then(function(f) {
       if (!f || !f.id) return f;
-      // ★ 공개 읽기 권한 부여 → 시트의 =IMAGE() 수식이 정상적으로 렌더링됨
+      // ★ 공개 읽기 권한 부여 → =IMAGE() 수식이 정상 동작
       return fetch('https://www.googleapis.com/drive/v3/files/' + f.id + '/permissions', {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + gAccessToken, 'Content-Type': 'application/json' },
         body: JSON.stringify({ role: 'reader', type: 'anyone' })
-      }).then(function(){ return f; }).catch(function(){ return f; });
+      }).then(function(){ return f; });
     });
 }
 
@@ -1196,37 +1275,49 @@ function saveToMySheet(data) {
     var sheetId = results[0];
     var folderId = results[1];
 
-    // 모든 이미지 업로드 (스타일 + 스토리 전부)
-    var allImgUploads = [];
-    (data.styleImages || []).forEach(function(img, i) {
-      allImgUploads.push(
-        uploadImageToDrive(img.data, img.mimeType, folderId, 'style_' + (i+1))
-          .then(function(f){ return (f && f.id) ? '=IMAGE("https://drive.google.com/thumbnail?sz=w400&id=' + f.id + '")' : ''; })
-          .catch(function(){ return ''; })
-      );
-    });
-    (data.storyImages || []).forEach(function(img, i) {
-      allImgUploads.push(
-        uploadImageToDrive(img.data, img.mimeType, folderId, 'story_' + (i+1))
-          .then(function(f){ return (f && f.id) ? '=IMAGE("https://drive.google.com/thumbnail?sz=w400&id=' + f.id + '")' : ''; })
-          .catch(function(){ return ''; })
-      );
-    });
+    // ★ 이미지 개별 업로드 → 대표 1장 + 폴더 링크 반환
+    function uploadImages(images, prefix) {
+      if (!images || images.length === 0) return Promise.resolve({formula:'', folderUrl:''});
+      // 서브폴더 생성 (프로젝트명_날짜_prefix)
+      var subFolderName = (data.projectName||'project') + '_' + prefix;
+      return fetch('https://www.googleapis.com/drive/v3/files?fields=id', {
+        method: 'GET',
+        headers: { 'Authorization': 'Bearer ' + gAccessToken }
+      }).then(function(){
+        // 서브폴더 생성
+        return fetch('https://www.googleapis.com/drive/v3/files?fields=id', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + gAccessToken, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: subFolderName, mimeType: 'application/vnd.google-apps.folder', parents: [folderId] })
+        }).then(function(r){ return r.json(); });
+      }).then(function(subFolder){
+        var subFolderId = subFolder.id;
+        var folderUrl = 'https://drive.google.com/drive/folders/' + subFolderId;
+        // 모든 이미지 개별 업로드
+        var uploads = images.map(function(img, i){
+          return uploadImageToDrive(img.data, img.mimeType, subFolderId, prefix+'_'+(i+1))
+            .then(function(f){ return (f&&f.id) ? f.id : null; })
+            .catch(function(){ return null; });
+        });
+        return Promise.all(uploads).then(function(ids){
+          // 대표 이미지 = 첫 번째
+          var firstId = ids.filter(Boolean)[0];
+          var formula = firstId ? '=IMAGE("https://drive.google.com/thumbnail?sz=w400&id=' + firstId + '")' : '';
+          return { formula: formula, folderUrl: folderUrl };
+        });
+      });
+    }
 
-    return Promise.all(allImgUploads).then(function(formulas) {
-      // 스타일 이미지들 / 스토리 이미지들 분리
-      var sCount = (data.styleImages || []).length;
-      var styleFormulaList = formulas.slice(0, sCount).filter(Boolean);
-      var storyFormulaList = formulas.slice(sCount).filter(Boolean);
-      // ★ 셀에는 대표 이미지 1장만 (수식은 셀당 1개만 가능하므로 여러 개 이어붙이면 깨짐)
-      var styleFormulas = styleFormulaList[0] || '';
-      var storyFormulas = storyFormulaList[0] || '';
-      // ★ 이미지가 있으면(1장이든 여러 장이든) 전체 이미지가 모인 프로젝트 폴더로 연결되는 링크
-      var folderUrl = 'https://drive.google.com/drive/folders/' + folderId;
-      var styleLink = (styleFormulaList.length) ? '=HYPERLINK("' + folderUrl + '","📁 전체보기 (' + styleFormulaList.length + '장)")' : '';
-      var storyLink = (storyFormulaList.length) ? '=HYPERLINK("' + folderUrl + '","📁 전체보기 (' + storyFormulaList.length + '장)")' : '';
+    return Promise.all([
+      uploadImages(data.styleImages, 'style'),
+      uploadImages(data.storyImages, 'story')
+    ]).then(function(results) {
+      var styleFs = results[0].formula ? [results[0].formula] : [];
+      var storyFs  = results[1].formula ? [results[1].formula] : [];
+      var styleFolderUrl = results[0].folderUrl;
+      var storyFolderUrl = results[1].folderUrl;
 
-      // 시트에 데이터 + 이미지 수식 추가
+      // 시트에 데이터 추가 (이미지 셀은 batchUpdate로 별도 설정)
       var row = [[
         now,
         data.projectName || '',
@@ -1241,14 +1332,14 @@ function saveToMySheet(data) {
         data.manualNote || '',
         data.sizeInfo || '',
         data.extrasNote || '',
-        styleFormulas,          // col13 스타일이미지 (대표 1장)
-        styleLink,                // col14 스타일링크(전체 폴더)
-        storyFormulas,            // col15 스토리이미지 (대표 1장)
-        storyLink,                // col16 스토리링크(전체 폴더)
-        data.finalPrompt ? "'" + data.finalPrompt : ''  // col17 Final Prompt
+        '',  // 스타일 이미지 col13 (batchUpdate로 주입)
+        '',  // 📁 스타일 폴더 링크 col14
+        '',  // 스토리 이미지 col15 (batchUpdate로 주입)
+        '',  // 📁 스토리 폴더 링크 col16
+        data.finalPrompt ? "'" + data.finalPrompt : ''  // Final Prompt col17
       ]];
 
-      // USER_ENTERED로 =IMAGE() 수식이 적용되게
+      // RAW로 먼저 행 추가 (이미지 셀은 비워두고)
       return fetch("https://sheets.googleapis.com/v4/spreadsheets/" + sheetId + "/values/A1:append?valueInputOption=USER_ENTERED", {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + gAccessToken, 'Content-Type': 'application/json' },
@@ -1279,6 +1370,65 @@ function saveToMySheet(data) {
             range: { sheetId: 0, dimension: 'ROWS', startIndex: rowNum, endIndex: rowNum+1 },
             properties: { pixelSize: 200 }, fields: 'pixelSize'
           }});
+
+          // 텍스트 셀 WRAP — col: 3~10, 17(Final Prompt)
+          [3,4,5,6,7,8,9,10,17].forEach(function(col) {
+            noteRequests.push({ repeatCell: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: col, endColumnIndex: col+1 },
+              cell: { userEnteredFormat: { wrapStrategy: 'WRAP', verticalAlignment: 'TOP' }},
+              fields: 'userEnteredFormat(wrapStrategy,verticalAlignment)'
+            }});
+          });
+
+          // 이미지 셀 포맷 — col13(스타일), col15(스토리)
+          [13, 15].forEach(function(col) {
+            noteRequests.push({ repeatCell: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: col, endColumnIndex: col+1 },
+              cell: { userEnteredFormat: { wrapStrategy: 'OVERFLOW_CELL', verticalAlignment: 'MIDDLE' }},
+              fields: 'userEnteredFormat(wrapStrategy,verticalAlignment)'
+            }});
+          });
+
+          // 📁 링크 셀 포맷 — col14(스타일📁), col16(스토리📁) 가운데 정렬
+          [14, 16].forEach(function(col) {
+            noteRequests.push({ repeatCell: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: col, endColumnIndex: col+1 },
+              cell: { userEnteredFormat: { horizontalAlignment: 'CENTER', verticalAlignment: 'MIDDLE', textFormat: { fontSize: 14 } }},
+              fields: 'userEnteredFormat(horizontalAlignment,verticalAlignment,textFormat)'
+            }});
+          });
+
+          // 이미지 수식 주입 — 대표 1장
+          if(styleFs[0]) {
+            noteRequests.push({ updateCells: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: 13, endColumnIndex: 14 },
+              rows: [{ values: [{ userEnteredValue: { formulaValue: styleFs[0] } }] }],
+              fields: 'userEnteredValue'
+            }});
+          }
+          // 📁 스타일 폴더 링크
+          if(styleFolderUrl) {
+            noteRequests.push({ updateCells: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: 14, endColumnIndex: 15 },
+              rows: [{ values: [{ userEnteredValue: { formulaValue: '=HYPERLINK("' + styleFolderUrl + '","📁")' } }] }],
+              fields: 'userEnteredValue'
+            }});
+          }
+          if(storyFs[0]) {
+            noteRequests.push({ updateCells: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: 15, endColumnIndex: 16 },
+              rows: [{ values: [{ userEnteredValue: { formulaValue: storyFs[0] } }] }],
+              fields: 'userEnteredValue'
+            }});
+          }
+          // 📁 스토리 폴더 링크
+          if(storyFolderUrl) {
+            noteRequests.push({ updateCells: {
+              range: { sheetId: 0, startRowIndex: rowNum, endRowIndex: rowNum+1, startColumnIndex: 16, endColumnIndex: 17 },
+              rows: [{ values: [{ userEnteredValue: { formulaValue: '=HYPERLINK("' + storyFolderUrl + '","📁")' } }] }],
+              fields: 'userEnteredValue'
+            }});
+          }
 
           if (noteRequests.length > 0) {
             fetch("https://sheets.googleapis.com/v4/spreadsheets/" + sheetId + ":batchUpdate", {
@@ -1340,7 +1490,7 @@ function api(action, params) {
 }
 
 var TOOLS={
-  gemini:    {name:'Gemini',      badge:'Gemini',  cls:'tb-gemini',    url:'https://gemini.google.com/images',  dot:'#0071e3', versions:['Flash 2.0 (기본)','Flash 1.5','Pro 2.0']},
+  gemini:    {name:'Gemini',      badge:'Gemini',  cls:'tb-gemini',    url:'https://gemini.google.com',  dot:'#0071e3', versions:['Flash 2.0 (기본)','Flash 1.5','Pro 2.0']},
   chatgpt:   {name:'ChatGPT',     badge:'ChatGPT', cls:'tb-chatgpt',   url:'https://chat.openai.com',    dot:'#19c37d', versions:['GPT-4o (기본)','GPT-4','DALL-E 3']},
   midjourney:{name:'Midjourney',  badge:'MJ v6.1', cls:'tb-midjourney',url:'https://www.midjourney.com', dot:'#ff2d55', versions:['v6.1 (기본)','v6.0','v5.2']},
   sd:        {name:'Stable Diff', badge:'SDXL',    cls:'tb-sd',        url:'https://stability.ai',       dot:'#af52de', versions:['SDXL (기본)','SD 3.0','SD 1.5']},
@@ -1383,22 +1533,6 @@ $('modalClose').addEventListener('click',function(){$('modalBg').classList.remov
   chk.addEventListener('change',function(){
     localStorage.setItem('mergeImg', chk.checked?'1':'0');
     showToast(chk.checked?'다중 이미지 합치기 ON':'다중 이미지 합치기 OFF (첫 번째만 복사)','info');
-  });
-})();
-// 데스크탑 3단 레이아웃 옵션 저장/복원
-(function(){
-  var chk=$('chkDesktop3Col');
-  if(!chk)return;
-  function applyLayoutMode(on){
-    document.body.classList.toggle('desktop3col', on);
-  }
-  var on = localStorage.getItem('desktop3col')==='1';
-  chk.checked = on;
-  applyLayoutMode(on);
-  chk.addEventListener('change',function(){
-    localStorage.setItem('desktop3col', chk.checked?'1':'0');
-    applyLayoutMode(chk.checked);
-    showToast(chk.checked?'데스크탑 3단 레이아웃 ON':'데스크탑 3단 레이아웃 OFF','info');
   });
 })();
 $('modalBg').addEventListener('click',function(e){if(e.target===$('modalBg'))$('modalBg').classList.remove('show');});
@@ -1452,7 +1586,7 @@ var isPopup = !!window.opener;  // Kevin 팝업창 여부
   var btn = $('btnOpenAISite');
   if(!btn) return;
   btn.addEventListener('click', function(){
-    var geminiUrl = 'https://gemini.google.com/images';
+    var geminiUrl = (TOOLS && S && TOOLS[S.tool]) ? TOOLS[S.tool].url : 'https://gemini.google.com';
     if(isPopup){
       try {
         if(window.opener && !window.opener.closed){
@@ -1672,7 +1806,7 @@ function openStandardCompanion(geminiUrl) {
 
 // ── 메인 진입점: 모드에 따라 자동 분기 ──────────
 function openAICompanion() {
-  var geminiUrl = 'https://gemini.google.com/images';
+  var geminiUrl = TOOLS[S.tool].url;
   var isMobile  = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 900;
   if (isMobile) {
     window.open(geminiUrl, '_blank');
@@ -1753,41 +1887,17 @@ var S_ENGINE = localStorage.getItem('kevinEngine') || 'v1';
     S_ENGINE = v;
     localStorage.setItem('kevinEngine', v);
     $('engineV1').classList.toggle('active', v==='v1');
-    $('engineV1_1').classList.toggle('active', v==='v1_1');
     $('engineV2').classList.toggle('active', v==='v2');
     $('engineV3').classList.toggle('active', v==='v3');
-    $('engineV4').classList.toggle('active', v==='v4');
-    $('engineV1').style.color = v==='v1' ? '#0071e3' : '';
-    $('engineV1_1').style.color = v==='v1_1' ? '#0369a1' : '';
-    $('engineV2').style.color = v==='v2' ? '#6c3fc5' : '';
-    $('engineV3').style.color = v==='v3' ? '#0f9b58' : '';
-    $('engineV4').style.color = v==='v4' ? '#d97706' : '';
-    $('engineDesc').textContent = v==='v1' ? '기존 표현기법 엔진' : v==='v1_1' ? '자체검토 강화 엔진 (temp 0.25 유지)' : v==='v2' ? '강화된 Rendering DNA 엔진' : v==='v3' ? 'Style Intelligence Engine' : '표현기법 퀄리티 최우선 엔진 (자체검토·정밀묘사)';
+    $('engineDesc').textContent = v==='v1' ? '기존 표현기법 엔진' : v==='v2' ? '강화된 Rendering DNA 엔진' : 'Style Intelligence Engine';
     // 버튼 색상도 엔진에 따라 변경
     var sBtn = $('btnS');
-    if(sBtn) sBtn.style.background = v==='v4' ? '#d97706' : v==='v3' ? '#0f9b58' : v==='v2' ? '#6c3fc5' : v==='v1_1' ? '#0369a1' : '#0071e3';
+    if(sBtn) sBtn.style.background = v==='v3' ? 'linear-gradient(135deg,#0f9b58,#0071e3)' : v==='v2' ? 'linear-gradient(135deg,#6c3fc5,#0071e3)' : '';
   }
   setEngine(S_ENGINE);
   $('engineV1').addEventListener('click', function(){ setEngine('v1'); });
-  $('engineV1_1').addEventListener('click', function(){ setEngine('v1_1'); });
   $('engineV2').addEventListener('click', function(){ setEngine('v2'); });
   $('engineV3').addEventListener('click', function(){ setEngine('v3'); });
-  $('engineV4').addEventListener('click', function(){ setEngine('v4'); });
-})();
-var S_STORY_ENGINE = localStorage.getItem('kevinStoryEngine') || 'v1';
-(function(){
-  function setStoryEngine(v){
-    S_STORY_ENGINE = v;
-    localStorage.setItem('kevinStoryEngine', v);
-    $('storyEngineV1').classList.toggle('active', v==='v1');
-    $('storyEngineV2').classList.toggle('active', v==='v2');
-    $('storyEngineV1').style.color = v==='v1' ? '#0891b2' : '';
-    $('storyEngineV2').style.color = v==='v2' ? '#6c3fc5' : '';
-    $('storyEngineDesc').textContent = v==='v1' ? '정제 프롬프트 엔진' : '구조 분석 엔진 (기존)';
-  }
-  setStoryEngine(S_STORY_ENGINE);
-  $('storyEngineV1').addEventListener('click', function(){ setStoryEngine('v1'); });
-  $('storyEngineV2').addEventListener('click', function(){ setStoryEngine('v2'); });
 })();
 $('btnS').addEventListener('click',runStyleAnalysis);
 function runStyleAnalysis(){
@@ -1804,12 +1914,11 @@ function runStyleAnalysis(){
   gT($('ptRef'),REF[S.tool]||REF.gemini);
   setLoad($('ptStyle'),'렌더링 DNA 분석 중…');setLoad($('ptChar'),'분석 중…');setLoad($('ptComp'),'분석 중…');setLoad($('ptNeg'),'분석 중…');
   setProgress(10,'단일 Gemini 호출로 분석 중…','STYLE_DNA + CHARACTER + COMPOSITION + NEGATIVE');
-  var analyzeAction = (S_ENGINE === 'v4') ? 'analyzeAll_v4' : (S_ENGINE === 'v3') ? 'analyzeAll_v3' : (S_ENGINE === 'v2') ? 'analyzeAll_v2' : (S_ENGINE === 'v1_1') ? 'analyzeAll_v1_1' : 'analyzeAll';
+  var analyzeAction = (S_ENGINE === 'v3') ? 'analyzeAll_v3' : (S_ENGINE === 'v2') ? 'analyzeAll_v2' : 'analyzeAll';
   prepareImages(S.sImgs).then(function(pl){
   api(analyzeAction,{imageDataArray:pl,toolKey:S.tool})
   .then(function(r){
     if(r.success){
-      S.styleEngineUsed = S_ENGINE; // ★ 이번 분석에 쓰인 엔진 기록 (Final Prompt 조립시 참조)
       applyPT($('ptStyle'),{success:true,prompt:r.style},'style');
       applyPT($('ptChar'), {success:true,prompt:r.character},'char');
       applyPT($('ptComp'), {success:true,prompt:r.composition},'comp');
@@ -1846,12 +1955,7 @@ function runStoryAnalysis(){
   resetP();$('progWrap').style.display='block';$('progWrap').classList.add('visible');
   setProgress(10,'스토리 구조 분석 중…','');showResArea();
   var pl=S.tImgs.map(function(i){return{data:i.base64,mimeType:i.mimeType};});
-  var isV1 = S_STORY_ENGINE === 'v1';
-  var action = isV1 ? 'generateStoryPrompt_v1' : 'generateStoryPrompt';
-  var payload = isV1
-    ? {imageDataArray:pl,toolKey:S.tool,styleDNA:(S.p.style||'')+'\n'+(S.p.comp||''),negativePrompt:S.p.neg||''}
-    : {imageDataArray:pl,toolKey:S.tool};
-  api(action,payload)
+  api('generateStoryPrompt',{imageDataArray:pl,toolKey:S.tool})
   .then(function(r){
     if(r.success){
       $('storyIn').value=r.prompt;
@@ -1859,7 +1963,7 @@ function runStoryAnalysis(){
       $('chkStory').checked=true;
       $('storyIn').scrollTop=0;
       addH('story',r.prompt,r.prompt);renderH('story');
-      updateFinal();setProgress(100,'스토리 분석 완료!');showToast('스토리 분석 완료!'+(isV1?' (정제 프롬프트)':''),'success');
+      updateFinal();setProgress(100,'스토리 분석 완료!');showToast('스토리 분석 완료!','success');
     }
     else{setProgress(100,'오류');showToast('스토리 분석 실패: '+(r.error||''),'error');}
     setTimeout(function(){$('progWrap').style.display='none';$('progWrap').classList.remove('visible');},1600);
@@ -1901,9 +2005,6 @@ function getTaHL(taId){
 /* HISTORY */
 var HCAP={ref:'Ref',style:'Style',comp:'Comp',char:'Char',neg:'Neg',sneg:'Sneg',story:'Story',manual:'Manual'};
 var HELM={ref:'ptRef',style:'ptStyle',comp:'ptComp',char:'ptChar',neg:'ptNeg',sneg:'snegIn',story:'storyIn',manual:'manualIn'};
-// 롱프레스로 del-mode를 켠 직후, 커서가 버튼 밖에서 손을 떼도(click이 다른 곳에서 잡혀도)
-// 그 즉시 뒤따르는 "바깥 클릭 감지"에 의해 del-mode가 풀리지 않도록 아주 짧게 무시시키는 플래그
-var suppressOutsideHClear=false;
 function addH(key,txt,html){
   if(!txt)return;
   var h=S.hist[key];
@@ -1924,55 +2025,45 @@ function renderH(key){
     tab.innerHTML='<span class="hn">'+(i+1)+'</span><span class="hx">✕</span>';tab.title='버전 '+(i+1);
     (function(idx,txt,html){
     var pressTimer=null;
-    var armed=false;
-    tab.addEventListener('contextmenu',function(e){ e.preventDefault(); });
-    tab.addEventListener('pointerdown',function(e){
-      // 포인터 캡처: 이후 이 손가락/마우스가 버튼 밖으로 나가도
-      // pointerup은 무조건 이 tab에서 잡히게 강제한다 (커서 이탈 문제 근본 해결)
-      try{ tab.setPointerCapture(e.pointerId); }catch(err){}
-      armed = tab.classList.contains('del-mode'); // 이미 X 상태면 이번 클릭은 '삭제 확정' 클릭
+    // 꾹 누르기 시작
+    tab.addEventListener('mousedown',function(e){
       pressTimer=setTimeout(function(){
+        // 같은 ht-row 안의 모든 탭에 jiggle 적용
         var row=tab.closest('.ht-row');
-        if(row) row.querySelectorAll('.htab').forEach(function(t){t.classList.add('del-mode');});
-        armed=false; // 롱프레스가 발동했으니 이번 release는 '그냥 X로 켜기'로 끝, 삭제는 아직 아님
+        if(row) row.querySelectorAll('.htab').forEach(function(t){t.classList.add('jiggle-mode');});
       },500);
     });
-    tab.addEventListener('pointerup',function(e){
-      clearTimeout(pressTimer);
-      try{ tab.releasePointerCapture(e.pointerId); }catch(err){}
-      // 이 release 직후 곧바로 뒤따라올 수 있는 "바깥 클릭" 오인 감지를 아주 잠깐 무시
-      suppressOutsideHClear = true;
-      setTimeout(function(){ suppressOutsideHClear = false; }, 0);
-
-      if(!tab.classList.contains('del-mode')){
-        return; // 롱프레스도 안 됐고 del-mode도 아니면 다음 click에서 '일반 선택' 처리
-      }
-      if(!armed){
-        return; // 방금 롱프레스로 막 X가 켜진 순간의 release → 여기서 끝, 삭제하지 않음
-      }
-      // armed===true && del-mode===true → 이미 X 상태였는데 한번 더(진짜로) 누른 것 → 삭제 확정
-      e.stopPropagation();
-      S.hist[key].splice(idx,1);
-      if(S.hist[key].length===0){
-        S.hi[key]=0;
-        var taId2=HELM[key];var el2=$(taId2);
-        if(el2){if(isTa){el2.value='';}else{el2.innerHTML='';}}
-        S.p[key]='';
-      } else {
-        S.hi[key]=Math.min(S.hi[key],S.hist[key].length-1);
-        var cur=S.hist[key][S.hi[key]];
-        var curTxt=cur?cur.text||cur:'';
-        var curHtml=cur?cur.html||cur:'';
-        var taId2=HELM[key];var el2=$(taId2);
-        if(el2){if(isTa){el2.value=curTxt;clearTaHighlight(taId2);}else{el2.innerHTML=curHtml;}}
-        S.p[key]=curTxt;
-      }
-      renderH(key);updateFinal();
-    });
-    tab.addEventListener('pointercancel',function(e){ clearTimeout(pressTimer); });
+    tab.addEventListener('mouseup',function(e){ clearTimeout(pressTimer); });
+    tab.addEventListener('mouseleave',function(e){ clearTimeout(pressTimer); });
+    // 터치 지원
+    tab.addEventListener('touchstart',function(e){
+      pressTimer=setTimeout(function(){
+        var row=tab.closest('.ht-row');
+        if(row) row.querySelectorAll('.htab').forEach(function(t){t.classList.add('jiggle-mode');});
+      },500);
+    },{passive:true});
+    tab.addEventListener('touchend',function(e){ clearTimeout(pressTimer); });
     tab.addEventListener('click',function(e){
-      // 실제 상태변화는 전부 pointerup에서 이미 처리됨. 여기선 del-mode 아닐 때의 '일반 선택'만 담당.
-      if(tab.classList.contains('del-mode')){ e.stopPropagation(); e.preventDefault(); return; }
+      if(e.target.classList.contains('hx')){
+        e.stopPropagation();
+        S.hist[key].splice(idx,1);
+        if(S.hist[key].length===0){
+          S.hi[key]=0;
+          var taId2=HELM[key];var el2=$(taId2);
+          if(el2){if(isTa){el2.value='';}else{el2.innerHTML='';}}
+          S.p[key]='';
+        } else {
+          S.hi[key]=Math.min(S.hi[key],S.hist[key].length-1);
+          var cur=S.hist[key][S.hi[key]];
+          var curTxt=cur?cur.text||cur:'';
+          var curHtml=cur?cur.html||cur:'';
+          var taId2=HELM[key];var el2=$(taId2);
+          if(el2){if(isTa){el2.value=curTxt;clearTaHighlight(taId2);}else{el2.innerHTML=curHtml;}}
+          S.p[key]=curTxt;
+        }
+        renderH(key);updateFinal();
+        return;
+      }
       S.hi[key]=i; S.p[key]=txt;
       var taId = HELM[key];
       var el=$(taId);
@@ -2118,41 +2209,6 @@ $('btnAIStory').addEventListener('click',function(){
     showToast('AI 강화 완료 — 원래 칸에 반영됐습니다.','success');
   });
 });
-function escHtml(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-$('btnCheckContam').addEventListener('click',function(){
-  var story=$('storyIn').value.trim();
-  if(!story){showToast('스토리를 먼저 입력하세요','error');return;}
-  var styleDNA=(S.p.style||'')+'\n'+(S.p.comp||'');
-  var neg=S.p.neg||'';
-  if(!styleDNA.trim()){showToast('스타일 분석을 먼저 진행하세요','error');return;}
-  aiBtnRun('btnCheckContam','#0891b2','checkStyleContamination',{styleDNA:styleDNA,negativePrompt:neg,storyText:story},function(r){
-    var panel=$('contamPanel');
-    if(!r.hasRisk){
-      panel.style.display='block';
-      panel.innerHTML='<div style="color:#0891b2;font-weight:600">✅ 오염 요소가 발견되지 않았어요.</div>';
-      return;
-    }
-    var riskHtml=(r.risks||[]).map(function(x){
-      return '<div style="margin:4px 0;padding:6px 8px;background:rgba(0,0,0,.03);border-radius:6px">'+
-        '<b>'+escHtml(x.element)+'</b> — '+escHtml(x.reason)+'</div>';
-    }).join('');
-    panel.style.display='block';
-    panel.innerHTML='<div style="font-weight:600;margin-bottom:6px">⚠️ 오염 위험 요소 '+(r.risks||[]).length+'개 발견</div>'+
-      riskHtml+
-      '<div style="margin-top:8px;font-weight:600">수정 제안</div>'+
-      '<div style="white-space:pre-wrap;font-size:12.5px;padding:8px;background:#fff;border-radius:6px;border:1px solid #e2e8f0;margin-top:4px">'+escHtml(r.revisedStory)+'</div>'+
-      '<div style="margin-top:8px;display:flex;gap:6px">'+
-        '<button id="btnContamAccept" class="enh-btn" style="background:#0891b2">✔ 수락하고 반영</button>'+
-        '<button id="btnContamReject" class="enh-btn" style="background:#94a3b8">취소</button>'+
-      '</div>';
-    $('btnContamAccept').addEventListener('click',function(){
-      applyEnhanceToTextarea('storyIn', r.revisedStory, null, 'chkStory');
-      panel.style.display='none';
-      showToast('오염요소 수정이 반영됐습니다. 이전 내용은 히스토리에 저장됐어요.','success');
-    });
-    $('btnContamReject').addEventListener('click',function(){ panel.style.display='none'; });
-  });
-});
 $('btnAIManual').addEventListener('click',function(){
   var txt=$('manualIn').value.trim();
   if(!txt){showToast('텍스트를 입력하세요','error');return;}
@@ -2184,6 +2240,23 @@ $('btnCvt').addEventListener('click',function(){
   showToast('변환 완료!','success');
 });
 $('chkSize').addEventListener('change',function(){updateFinal();});
+
+/* 사이즈 입력 시 자동 체크 / 미입력 시 기본값 16:9 (1280×720) */
+var DEFAULT_W = 1280, DEFAULT_H = 720;
+function autoCheckSize(){
+  var w = parseInt($('szW').value)||0;
+  var h = parseInt($('szH').value)||0;
+  if(w > 0 || h > 0){
+    // 값 입력됨 → 자동 체크
+    $('chkSize').checked = true;
+  } else {
+    // 미입력 → 기본값 16:9 적용 후 체크
+    $('szW').value = '';
+    $('szH').value = '';
+    $('chkSize').checked = false;
+  }
+  updateFinal();
+}
 
 /* TRANSLATE */
 var TRMAP={TrRef:{key:'ref',el:'ptRef',ta:false},TrStyle:{key:'style',el:'ptStyle',ta:false},TrChar:{key:'char',el:'ptChar',ta:false},TrComp:{key:'comp',el:'ptComp',ta:false},TrNeg:{key:'neg',el:'ptNeg',ta:false},TrSNeg:{key:'sneg',el:null,ta:true},TrStory:{key:'story',el:'storyIn',ta:true},TrManual:{key:'manual',el:'manualIn',ta:true}};
@@ -2246,18 +2319,20 @@ function setAIConnectedState() {
   $('sideImgCp').classList.add('ai-connected');
   $('sideTxtCp').classList.add('ai-connected');
   $('btnResetAI').style.display = 'block';
+  $('btnFullReset').style.display = 'block'; // 전체 초기화 버튼도 함께 표시
 }
 
 function resetAIConnectedState() {
   $('sideImgCp').classList.remove('ai-connected');
   $('sideTxtCp').classList.remove('ai-connected');
   $('btnResetAI').style.display = 'none';
+  $('btnFullReset').style.display = 'none'; // 전체 초기화 버튼도 함께 숨김
   updateCopyBtnLabels();
 }
 
 function openOrFocusAI() {
   if (wsMode === 'split') return;
-  var geminiUrl = 'https://gemini.google.com/images';
+  var geminiUrl = TOOLS[S.tool].url;
   var isMobile  = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 900;
   if (isMobile) { window.open(geminiUrl, '_blank'); return; }
 
@@ -2285,45 +2360,15 @@ $('btnResetAI').addEventListener('click', function() {
 });
 
 $('btnFullReset').addEventListener('click', function() {
-  if (!confirm('첨부 이미지, 모든 텍스트 프롬프트, 히스토리를 전부 초기화할까요?\n(AI 연결 상태도 함께 초기화됩니다)')) return;
-
-  // 1) AI 연결 초기화 (Standard 모드에서만 의미 있음, Split 모드에선 무해)
+  if (!confirm('AI 연결과 첨부 이미지를 모두 초기화할까요?')) return;
+  // AI 연결 초기화
   aiWindow = null;
   aiOpened = false;
   resetAIConnectedState();
-
-  // 2) 첨부 이미지 삭제 (기존 삭제 버튼 클릭으로 처리)
+  // 이미지 삭제 (기존 삭제 버튼 클릭으로 처리)
   if ($('clrS')) $('clrS').click();
   if ($('clrT')) $('clrT').click();
-
-  // 3) 프로젝트명 초기화
-  if ($('projIn')) $('projIn').value = '';
-
-  // 4) 텍스트 프롬프트 + 히스토리 + 체크박스 전부 초기화
-  var textKeys = ['ref','style','comp','char','neg','sneg','story','manual'];
-  textKeys.forEach(function(key){
-    S.p[key] = '';
-    S.hist[key] = [];
-    S.hi[key] = 0;
-    var el = $(HELM[key]);
-    if (el) {
-      if (key==='sneg' || key==='story' || key==='manual') { el.value = ''; clearTaHighlight(HELM[key]); }
-      else { el.innerHTML = ''; }
-    }
-    renderH(key);
-  });
-  ['chkRef','chkStyle','chkChar','chkComp','chkNeg','chkSNeg','chkStory','chkManual'].forEach(function(id){
-    var c = $(id); if (c) c.checked = false;
-  });
-
-  // 5) 사이즈/생성이미지 상태 초기화
-  S.sizePrompt = '';
-  if ($('chkSize')) $('chkSize').checked = false;
-  S.genImgB64 = ''; S.genImgMime = ''; S.genImgDriveUrl = '';
-  S.analyzed = false;
-
-  updateFinal();
-  showToast('전체 초기화 완료! (이미지+텍스트+히스토리)', 'success');
+  showToast('전체 초기화 완료!', 'success');
 });
 
 $('sideImgCp').addEventListener('click', function() {
@@ -2436,48 +2481,52 @@ function cpImage(cb){
     var img=imgs[0];
     writeBlob(b64ToBlob(img.base64, img.mimeType), img.mimeType);
   } else {
-    // 다중 이미지 그리드 배치 (비율 유지, 정사각형에 가깝게)
-    var loaded=0, imgEls=[];
+    // 다중 이미지 그리드 배치 — ★ Blob URL 방식으로 동일 이미지도 각각 독립 로드
+    var imgEls = new Array(imgs.length).fill(null);
+    var doneCount = 0;
+
+    function drawGrid(){
+      var n = imgEls.length;
+      var cols = n<=2 ? n : Math.ceil(Math.sqrt(n));
+      var rows = Math.ceil(n/cols);
+      var cellW=0, cellH=0;
+      imgEls.forEach(function(e){ if(e){cellW=Math.max(cellW,e.naturalWidth);cellH=Math.max(cellH,e.naturalHeight);}});
+      var canvas=document.createElement('canvas');
+      canvas.width=cellW*cols; canvas.height=cellH*rows;
+      var ctx=canvas.getContext('2d');
+      ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      imgEls.forEach(function(e,i){
+        if(!e) return;
+        var col=i%cols, row=Math.floor(i/cols);
+        var scale=Math.min(cellW/e.naturalWidth, cellH/e.naturalHeight);
+        var dw=Math.round(e.naturalWidth*scale), dh=Math.round(e.naturalHeight*scale);
+        var dx=col*cellW+Math.round((cellW-dw)/2), dy=row*cellH+Math.round((cellH-dh)/2);
+        ctx.drawImage(e,dx,dy,dw,dh);
+      });
+      canvas.toBlob(function(blob){
+        navigator.clipboard.write([new ClipboardItem({'image/png':blob})])
+          .then(function(){if(cb)cb(true);})
+          .catch(function(e){showToast('이미지 복사 실패: '+e.message,'error');if(cb)cb(false);});
+      },'image/png');
+    }
+
     imgs.forEach(function(imgData, i){
+      // ★ base64 → Blob → BlobURL 방식: 동일 파일이어도 각각 새 URL로 로드해서 onload 충돌 없음
+      var byteStr=atob(imgData.base64), ab=new ArrayBuffer(byteStr.length), ia=new Uint8Array(ab);
+      for(var k=0;k<byteStr.length;k++) ia[k]=byteStr.charCodeAt(k);
+      var blob=new Blob([ab],{type:imgData.mimeType||'image/png'});
+      var blobUrl=URL.createObjectURL(blob);
       var el=new Image();
-      el.onload=function(){
-        imgEls[i]=el; loaded++;
-        if(loaded===imgs.length){
-          var n=imgEls.length;
-          // 그리드 열/행 계산
-          var cols = n<=2 ? n : Math.ceil(Math.sqrt(n));
-          var rows = Math.ceil(n/cols);
-          // 각 셀 크기: 가장 큰 이미지 기준
-          var cellW=0, cellH=0;
-          imgEls.forEach(function(e){
-            cellW=Math.max(cellW,e.naturalWidth);
-            cellH=Math.max(cellH,e.naturalHeight);
-          });
-          var canvas=document.createElement('canvas');
-          canvas.width=cellW*cols;
-          canvas.height=cellH*rows;
-          var ctx=canvas.getContext('2d');
-          ctx.fillStyle='#ffffff';
-          ctx.fillRect(0,0,canvas.width,canvas.height);
-          imgEls.forEach(function(e,i){
-            var col=i%cols, row=Math.floor(i/cols);
-            // 비율 유지하며 셀에 맞게 배치
-            var scale=Math.min(cellW/e.naturalWidth, cellH/e.naturalHeight);
-            var dw=Math.round(e.naturalWidth*scale);
-            var dh=Math.round(e.naturalHeight*scale);
-            var dx=col*cellW+Math.round((cellW-dw)/2);
-            var dy=row*cellH+Math.round((cellH-dh)/2);
-            ctx.drawImage(e,dx,dy,dw,dh);
-          });
-          canvas.toBlob(function(blob){
-            navigator.clipboard.write([new ClipboardItem({'image/png':blob})])
-              .then(function(){if(cb)cb(true);})
-              .catch(function(e){showToast('이미지 복사 실패: '+e.message,'error');if(cb)cb(false);});
-          },'image/png');
-        }
-      };
-      el.onerror=function(){showToast('이미지 로드 실패','error');if(cb)cb(false);};
-      el.src='data:'+(imgData.mimeType||'image/png')+';base64,'+imgData.base64;
+      el.onload=(function(idx,url,element){
+        return function(){
+          imgEls[idx]=element;
+          URL.revokeObjectURL(url);
+          doneCount++;
+          if(doneCount===imgs.length) drawGrid();
+        };
+      })(i, blobUrl, el);
+      el.onerror=function(){URL.revokeObjectURL(blobUrl);showToast('이미지 로드 실패','error');if(cb)cb(false);};
+      el.src=blobUrl;
     });
   }
 }
@@ -2838,30 +2887,26 @@ function extractJSON(text){
       // 수정된 항목 목록
       var labelMap = {ptRef:'Reference',ptStyle:'Style DNA',ptChar:'Character',ptComp:'Composition',ptNeg:'Negative',sneg:'Strong Neg',story:'Story Structure',manual:'Manual'};
       var changedLabels = [];
-      var previewBlocks = [];
+      var previewLines  = [];
       Object.keys(parsed).forEach(function(k){
         var pc = (parsed[k]||'').replace(/\*\*/g,'');
         var oc = (allData[k]||'').replace(/\*\*/g,'');
         if(parsed[k] && pc !== oc){
           changedLabels.push(labelMap[k]);
-          previewBlocks.push({key:k, label:labelMap[k], text:parsed[k]});
+          previewLines.push('<b style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.04em">'+labelMap[k]+'</b>\n'+parsed[k]);
         }
       });
 
       var aiMsg = changedLabels.length
-        ? '수정할 항목: ' + changedLabels.join(', ') + '\n항목별로 적용 여부를 선택한 뒤 적용해주세요.'
+        ? '수정할 항목: ' + changedLabels.join(', ') + '\n아래 미리보기를 확인하고 적용해주세요.'
         : '변경할 내용을 찾지 못했어요. 요청을 더 구체적으로 입력해주세요.';
       state.history[loadIdx] = {role:'ai', text: aiMsg};
       renderChatHistory(targetId);
 
-      if(previewBlocks.length){
-        $('chatPrevText-'+targetId).innerHTML = previewBlocks.map(function(b){
-          var chkId = 'chatFieldChk-'+targetId+'-'+b.key;
-          return '<label style="display:flex;gap:7px;align-items:flex-start;cursor:pointer;padding:4px 0">'
-            + '<input type="checkbox" class="chatFieldChk" id="'+chkId+'" data-key="'+b.key+'" checked style="margin-top:3px;flex-shrink:0">'
-            + '<span style="flex:1"><b style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.04em">'+b.label+'</b><br>'+boldToMark(b.text)+'</span>'
-            + '</label>';
-        }).join('<hr style="border:none;border-top:1px solid rgba(0,0,0,.1);margin:6px 0">');
+      if(previewLines.length){
+        $('chatPrevText-'+targetId).innerHTML = previewLines
+          .map(function(l){ return boldToMark(l); })
+          .join('<hr style="border:none;border-top:1px solid rgba(0,0,0,.1);margin:6px 0">');
         $('chatPrev-'+targetId).classList.add('show');
       }
       if(ta) ta.focus();
@@ -2870,18 +2915,6 @@ function extractJSON(text){
   /* Final 채팅 결과 실제 적용 */
   function applyFinalChatResult(parsed){
     if(!parsed) return;
-    // ★ 체크 해제된 항목은 이번 적용에서 제외
-    var checkboxes = document.querySelectorAll('.chatFieldChk');
-    if(checkboxes.length){
-      var filtered = {};
-      checkboxes.forEach(function(cb){
-        var k = cb.getAttribute('data-key');
-        if(cb.checked && parsed[k] !== undefined) filtered[k] = parsed[k];
-      });
-      parsed = filtered;
-      if(!Object.keys(parsed).length){ showToast('적용할 항목을 하나 이상 선택해주세요','error'); return; }
-    }
-    var changedFields = {}; // ★ 이번에 실제로 바뀐 항목 추적 (일관성 검사용)
     // contenteditable 카드들 - 값이 있으면 항상 적용
     ['ptRef','ptStyle','ptChar','ptComp','ptNeg'].forEach(function(id){
       var val = parsed[id];
@@ -2891,8 +2924,6 @@ function extractJSON(text){
       var newHTML = boldToMark(val);
       var key = {ptRef:'ref',ptStyle:'style',ptChar:'char',ptComp:'comp',ptNeg:'neg'}[id];
       var oldText = el.textContent.trim();
-      var newPlain = val.replace(/\*\*/g,'');
-      if(newPlain !== oldText) changedFields[key] = newPlain;
       // 히스토리 저장 (기존 내용 있을 때만)
       if(oldText) { S.p[key]=oldText; addH(key,oldText,el.innerHTML); }
       // 새 내용 적용
@@ -2907,7 +2938,6 @@ function extractJSON(text){
       if(oldSneg) addH('sneg', oldSneg, oldSneg);
       var hlSneg = applyTaHighlight('snegIn', parsed.sneg);
       var plainSneg = parsed.sneg.replace(/\*\*/g,'');
-      if(plainSneg !== oldSneg) changedFields.sneg = plainSneg;
       if(parsed.sneg){ $('chkSNeg').checked=true; S.p.sneg=plainSneg; addH('sneg',plainSneg,hlSneg); renderH('sneg'); }
     }
     if(parsed.story !== undefined && parsed.story !== null && $('storyIn')){
@@ -2915,7 +2945,6 @@ function extractJSON(text){
       if(oldStory) addH('story', oldStory, oldStory);
       var hlStory = applyTaHighlight('storyIn', parsed.story);
       var plainStory = parsed.story.replace(/\*\*/g,'');
-      if(plainStory !== oldStory) changedFields.story = plainStory;
       if(parsed.story){ $('chkStory').checked=true; S.p.story=plainStory; addH('story',plainStory,hlStory); renderH('story'); }
     }
     if(parsed.manual !== undefined && parsed.manual !== null && $('manualIn')){
@@ -2923,94 +2952,12 @@ function extractJSON(text){
       if(oldManual) addH('manual', oldManual, oldManual);
       var hlManual = applyTaHighlight('manualIn', parsed.manual);
       var plainManual = parsed.manual.replace(/\*\*/g,'');
-      if(plainManual !== oldManual) changedFields.manual = plainManual;
       if(parsed.manual){ $('chkManual').checked=true; S.p.manual=plainManual; addH('manual',plainManual,hlManual); renderH('manual'); }
     }
     updateFinal();
     showToast('모든 항목이 수정됐습니다!','success');
     var prev = $('chatPrev-finalChatPanel');
     if(prev) prev.classList.remove('show');
-    // ★ 일관성 검사 자동 실행 (바뀐 항목이 있을 때만)
-    if(Object.keys(changedFields).length) runConsistencyCheck(changedFields);
-  }
-
-  /* ★ 일관성 검사 — AI 수정으로 바뀐 항목 기준, 나머지 항목에 모순되는 내용이 있는지 자동 대조 */
-  var FIELD_LABEL = {ref:'Reference',style:'Style DNA',char:'Character',comp:'Composition',neg:'Negative',sneg:'Strong Neg',story:'Story Structure',manual:'Manual Note'};
-  var FIELD_ELID  = {ref:'ptRef',style:'ptStyle',char:'ptChar',comp:'ptComp',neg:'ptNeg',sneg:'snegIn',story:'storyIn',manual:'manualIn'};
-  var FIELD_IS_TA = {sneg:true,story:true,manual:true};
-  function getFieldText(key){
-    var el = $(FIELD_ELID[key]);
-    if(!el) return '';
-    return FIELD_IS_TA[key] ? el.value.trim() : el.textContent.trim();
-  }
-  function runConsistencyCheck(changedFields){
-    var otherFields = {};
-    Object.keys(FIELD_LABEL).forEach(function(key){
-      if(changedFields[key] !== undefined) return; // 방금 바뀐 항목은 대상에서 제외
-      var t = getFieldText(key);
-      if(t) otherFields[key] = t;
-    });
-    if(!Object.keys(otherFields).length) return; // 비교할 다른 항목이 없으면 스킵
-    var panel = $('consistencyPanel');
-    panel.style.display='block';
-    panel.scrollIntoView({behavior:'smooth', block:'center'});
-    panel.innerHTML='<div style="display:flex;align-items:center;gap:6px;color:var(--t2);font-size:12.5px"><span class="spinner" style="width:11px;height:11px"></span>변경 내용이 다른 항목과 충돌하는지 확인 중…</div>';
-    api('checkConsistency',{changedFields:changedFields, otherFields:otherFields}).then(function(r){
-      if(!r.success){ panel.style.display='none'; return; }
-      if(!r.hasIssues || !(r.issues||[]).length){
-        panel.innerHTML='<div style="color:#0891b2;font-weight:600;font-size:12.5px">🔗 일관성 검사: 다른 항목과 모순되는 내용이 없어요.</div>';
-        showToast('일관성 검사 완료 — 충돌 없음','info');
-        setTimeout(function(){ panel.style.display='none'; }, 3500);
-        return;
-      }
-      showToast('일관성 검사: 충돌 가능한 내용 '+r.issues.length+'개 발견 — 아래에서 확인해주세요','info');
-      var issues = r.issues;
-      var rows = issues.map(function(it,i){
-        return '<label style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #eef2f6;font-size:12px;cursor:pointer">'
-          + '<input type="checkbox" class="consIssueChk" data-idx="'+i+'" checked style="margin-top:3px">'
-          + '<span><b>['+(FIELD_LABEL[it.field]||it.field)+']</b> "'+escHtml(it.find)+'" → "'+escHtml(it.replace)+'"'
-          + '<br><span style="color:var(--t2);font-size:11px">'+escHtml(it.reason)+'</span></span>'
-          + '</label>';
-      }).join('');
-      panel.innerHTML='<div style="font-weight:600;margin-bottom:6px;font-size:12.5px">🔗 일관성 검사: 다른 항목과 충돌 가능한 내용 '+issues.length+'개 발견</div>'
-        + rows
-        + '<div style="margin-top:10px;display:flex;gap:6px">'
-        +   '<button id="btnConsApply" class="enh-btn" style="background:#0891b2">✔ 선택 항목 적용</button>'
-        +   '<button id="btnConsDismiss" class="enh-btn" style="background:#94a3b8">닫기</button>'
-        + '</div>';
-      $('btnConsApply').addEventListener('click',function(){
-        var checked = Array.prototype.slice.call(document.querySelectorAll('.consIssueChk:checked'));
-        checked.forEach(function(cb){
-          var it = issues[+cb.getAttribute('data-idx')];
-          var cur = getFieldText(it.field);
-          if(cur.indexOf(it.find) === -1) return; // 원문이 이미 바뀌어 못 찾으면 스킵
-          var next = cur.split(it.find).join(it.replace);
-          applyFieldFix(it.field, next);
-        });
-        panel.innerHTML='<div style="color:#0891b2;font-weight:600;font-size:12.5px">✔ 선택한 항목이 반영됐어요. 이전 내용은 히스토리에 저장됐습니다.</div>';
-        setTimeout(function(){ panel.style.display='none'; }, 2500);
-        updateFinal();
-      });
-      $('btnConsDismiss').addEventListener('click',function(){ panel.style.display='none'; });
-    }).catch(function(){ panel.style.display='none'; });
-  }
-  function applyFieldFix(key, newText){
-    var elId = FIELD_ELID[key];
-    var el = $(elId);
-    if(!el) return;
-    if(FIELD_IS_TA[key]){
-      var old = el.value.trim();
-      if(old) addH(key, old, old);
-      el.value = newText;
-      S.p[key] = newText;
-      addH(key, newText, newText); renderH(key);
-    } else {
-      var oldT = el.textContent.trim();
-      if(oldT) addH(key, oldT, el.innerHTML);
-      el.textContent = newText;
-      S.p[key] = newText;
-      addH(key, newText, newText); renderH(key);
-    }
   }
 
   /* 버튼 이벤트 등록 - 기존 카드 💬 버튼 */
@@ -3063,6 +3010,13 @@ function updateFinal(){
   if($('chkRef').checked&&getT($('ptRef')))    secs.push({k:'ref',t:getHTML($('ptRef'))});
   if($('chkStyle').checked&&getT($('ptStyle')))secs.push({k:'style',t:getHTML($('ptStyle'))});
   if($('chkChar').checked&&getT($('ptChar')))  secs.push({k:'char',t:getHTML($('ptChar'))});
+  // 캐릭터 슬롯 — 체크된 경우 char 섹션 뒤에 추가
+  if(charSlots.length > 0){
+    var charSlotTxt = charSlots.map(function(s){
+      return '[Character ' + s.label + '] ' + s.content;
+    }).join('\n');
+    secs.push({k:'char', t:charSlotTxt.replace(/\n/g,'<br>')});
+  }
   if($('chkComp').checked&&getT($('ptComp')))  secs.push({k:'comp',t:getHTML($('ptComp'))});
   if($('chkNeg').checked&&getT($('ptNeg')))    secs.push({k:'neg',t:getHTML($('ptNeg'))});
   if($('chkSNeg').checked){var st=$('snegIn').value.trim();if(st)secs.push({k:'sneg',t:getTaHL('snegIn')});}
@@ -3105,12 +3059,7 @@ function getFinalPlain(){
     l.push('=== STYLE LOCKED. CONTENT FOLLOWS. Apply scene details using the style above. ===');
   }
   if(contentLines.length){
-    // ★ V1-1 / V4 엔진으로 분석한 경우에만: Content 섹션 진입 직전 스타일 지시를 한 번 더 짧게 상기시킴
-    //   (긴 Style DNA 이후 'lost in the middle' 현상을 줄이기 위함, V1/V2/V3는 기존 방식 그대로 유지)
-    var reminder = ((S.styleEngineUsed === 'v4' || S.styleEngineUsed === 'v1_1') && styleLines.length)
-      ? 'Reminder: match the exact rendering style from the reference image above — same line weight, shading, texture, and color method. Now apply these scene details:\n\n'
-      : '';
-    l.push('=== CONTENT: POSITION / FORM / CHARACTERS / BACKGROUND ===\nApply content details only. Style remains locked above.\n\n'+reminder+contentLines.join('\n\n'));
+    l.push('=== CONTENT: POSITION / FORM / CHARACTERS / BACKGROUND ===\nApply content details only. Style remains locked above.\n\n'+contentLines.join('\n\n'));
   }
   endLines.forEach(function(t){l.push(t);});
   l.push('GLOBAL RULE: Do NOT include any Korean (Hangul) text, characters, or signage anywhere in the generated image. All visible text in the image must be in English or left blank.');
@@ -3306,10 +3255,9 @@ function renderFinalLockBar(){
 }
 // jiggle 모드 해제 - 탭 바깥 클릭시
 document.addEventListener('click',function(e){
-  if(suppressOutsideHClear) return; // 방금 롱프레스 릴리즈로 인한 잔여 클릭이면 무시
-  if(!e.target.closest('.htab') && !e.target.classList.contains('hx')){
-    document.querySelectorAll('.htab.del-mode').forEach(function(t){
-      t.classList.remove('del-mode');
+  if(!e.target.closest('.htab')){
+    document.querySelectorAll('.htab.jiggle-mode').forEach(function(t){
+      t.classList.remove('jiggle-mode');
     });
   }
 });
@@ -3317,6 +3265,101 @@ function closeDDs(){$('saveDd').classList.remove('show');$('saveArr').classList.
 
 /* HELPERS */
 function setLoad(el,msg){el.className='pt is-loading';el.innerHTML='<span class="ll"><span class="spinner"></span>'+msg+'</span>';el.style.color='';el.setAttribute('contenteditable','false');}
+/* ── 캐릭터 슬롯 시스템 ── */
+var charSlots = [];
+var CHAR_LABELS = 'ABCDEFGHIJ'.split('');
+
+function renderCharSlots(){
+  var wrap = $('charSlotsWrap');
+  var list = $('charSlotsList');
+  var countEl = $('charSlotsCount');
+  if(!list) return;
+  if(charSlots.length === 0){ wrap.style.display='none'; return; }
+  wrap.style.display = 'block';
+  if(countEl) countEl.textContent = charSlots.length + '명';
+  list.innerHTML = '';
+  charSlots.forEach(function(slot, i){
+    var el = document.createElement('div');
+    el.className = 'char-slot' + (slot.locked ? ' locked' : '');
+    var lockIcon = slot.locked
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+    el.innerHTML =
+      '<div class="char-slot-header">' +
+        '<span class="char-slot-label">Character ' + slot.label + '</span>' +
+        '<div class="char-slot-acts">' +
+          '<button class="char-slot-lock' + (slot.locked?' locked':'') + '" data-idx="'+i+'" title="'+(slot.locked?'잠금 해제':'잠금')+'">' + lockIcon + '</button>' +
+          '<button class="char-slot-del" data-idx="'+i+'" title="삭제">✕</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="char-slot-body" contenteditable="true" data-idx="'+i+'" spellcheck="false">'+slot.content+'</div>' +
+      '<div class="char-slot-footer">' +
+        '<button class="char-slot-ai-btn" data-idx="'+i+'">✦ AI 수정</button>' +
+        '<span style="font-size:10px;color:var(--t3);margin-left:auto">' + (slot.locked ? '🔒 잠금 — 장면 반영 시 변경 안됨' : '🔓 장면 반영 시 업데이트됨') + '</span>' +
+      '</div>';
+    el.querySelector('.char-slot-body').addEventListener('input', function(){
+      charSlots[parseInt(this.dataset.idx)].content = this.textContent;
+      updateFinal();
+    });
+    el.querySelector('.char-slot-lock').addEventListener('click', function(){
+      var idx = parseInt(this.dataset.idx);
+      charSlots[idx].locked = !charSlots[idx].locked;
+      renderCharSlots(); updateFinal();
+    });
+    el.querySelector('.char-slot-del').addEventListener('click', function(){
+      charSlots.splice(parseInt(this.dataset.idx), 1);
+      charSlots.forEach(function(s,j){ s.label = CHAR_LABELS[j]||String(j+1); });
+      renderCharSlots(); updateFinal();
+    });
+    el.querySelector('.char-slot-ai-btn').addEventListener('click', function(){
+      var idx = parseInt(this.dataset.idx);
+      var slot = charSlots[idx];
+      if(slot.locked){ showToast('잠금 해제 후 AI 수정 가능해요','warn'); return; }
+      var btn = this; btn.textContent='...'; btn.disabled=true;
+      var p = 'Character '+slot.label+' description: update to match Story scene. Keep face/hair, change outfit/props to fit scene. Output in English only. Current: '+slot.content+' Story: '+($('storyIn').value.trim());
+      callGemini(p).then(function(r){ charSlots[idx].content=r.trim(); renderCharSlots(); updateFinal(); })
+        .catch(function(){ showToast('AI 수정 실패','error'); })
+        .finally(function(){ btn.textContent='✦ AI 수정'; btn.disabled=false; });
+    });
+    list.appendChild(el);
+  });
+}
+
+function callGemini(prompt){
+  // 스타일 분석기와 동일하게 GAS 경유 호출
+  return api('geminiPrompt', {prompt: prompt}).then(function(r){
+    if(!r.success) throw new Error(r.error || 'API 오류');
+    return r.result;
+  });
+}
+
+$('btnSceneApply').addEventListener('click', function(){
+  var storyTxt = $('storyIn').value.trim();
+  if(!storyTxt){ showToast('Story Structure를 먼저 입력해주세요','warn'); return; }
+  var charPrompt = getT($('ptChar'))||'';
+  var btn = this;
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="spinner" style="width:13px;height:13px;border-width:2px"></span> 분석 중…';
+  var p = 'Analyze the character prompt and Story below. Generate character descriptions matching the number of characters in Story. Keep face/hair from existing characters, update outfit/props to fit Story scene. Output ONLY a JSON array: [{"content":"English description"},{"content":"English description"}]. Character prompt: '+charPrompt+' Story: '+storyTxt;
+  callGemini(p).then(function(r){
+    try{
+      var clean = r.trim().replace(/```json|```/g,'').trim();
+      var parsed = JSON.parse(clean);
+      var lockedSlots = charSlots.filter(function(s){return s.locked;});
+      charSlots = parsed.map(function(item,i){
+        var existing = lockedSlots.find(function(s){return s.label===CHAR_LABELS[i];});
+        return existing || {id:Date.now()+i, label:CHAR_LABELS[i]||String(i+1), content:item.content||'', locked:false};
+      });
+      renderCharSlots(); updateFinal();
+      showToast('캐릭터 '+charSlots.length+'명 슬롯 생성 완료 ✅','success');
+    }catch(e){ showToast('파싱 실패 — 다시 시도해주세요','error'); }
+  }).catch(function(e){ showToast('API 오류: '+(e.message||e),'error'); })
+  .finally(function(){
+    btn.classList.remove('loading');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>장면 반영<span class="scene-apply-sub">Story → 캐릭터 슬롯 자동 생성</span>';
+  });
+});
+
 var tt;
 function showToast(msg,type){type=type||'info';var t=$('toast'),tm=$('toastMsg');clearTimeout(tt);tm.textContent=msg;t.className='toast '+type;void t.offsetWidth;t.classList.add('show');tt=setTimeout(function(){t.classList.remove('show');},3800);}
 </script>
